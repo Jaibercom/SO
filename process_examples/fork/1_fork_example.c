@@ -8,27 +8,23 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-	int value =5;
+int value =5;
 
-	int main(){
+int main(){
 
-		pid_t pid;
+	pid_t pid;
+	pid  =  fork();
 
-		pid  =  fork();
-		
-		//printf("PID: %d\n", getpid());
-		//getchar();
-	
-		if( pid == 0 ){
-			value += 15;
-			return 0;
-		}
-		else if( pid > 0 ){
-			wait(NULL);
-			printf("\nPARENT: value = %d\n", value ); //LINE A
-			return 0;
-
-		}
+	if( pid == 0 ){
+		value += 15;
+		return 0;
+	}
+	else if( pid > 0 ){
+		wait(NULL);
+		printf("\nPARENT: value = %d\n", value ); //LINE A
+		return 0;
 
 	}
+
+}
 

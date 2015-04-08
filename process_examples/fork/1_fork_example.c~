@@ -1,6 +1,5 @@
 /*
 	Example: How to use system call fork
-	Ejemplo de uso de la llamada al sistema fork
 	compile: gcc -o fork fork_ejemplo.c
 */
 
