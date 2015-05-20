@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	/* create the thread */
 	pthread_create(&tid, NULL, runner, argv[1]);
 	/* wait for the thread to exit */
-	pthread_join(tid,NULL);
+	pthread_join(tid, NULL);
 	
 	printf("sum = %d\n",sum);
 	
