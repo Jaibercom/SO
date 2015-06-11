@@ -9,13 +9,14 @@ struct parameters{
 	int up;
 };
 
-int sum=0; /* this data is shared by the thread(s) */
+//int sum = 0; /* this data is shared by the thread(s) */
 void *runner(void *param); /* threads call this function */
 
 int main(int argc, char *argv[])
 {
 	pthread_t tid[NUMTHREADS]; /* the thread identifier */
 	unsigned char cnt =0;
+	int sum=0; 	
 	
 	int *response[NUMTHREADS];
 	int value = atoi(argv[1]);
