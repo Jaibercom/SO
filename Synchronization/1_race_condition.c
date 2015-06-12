@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <pthread.h>
-#define NUMTHREADS 1000
+#define NUMTHREADS 200
 
 /* Global variables - shared between threads */
 double counter = 0;

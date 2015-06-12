@@ -18,7 +18,8 @@ int main(){
 		fprintf(stderr, "Fork failed ");
 	}
 	else if( pid == 0 ){	/*Child process */ 
-		execlp("ls", "ls", "-la",NULL);
+		execl("./fork", "fork", NULL);
+		printf("\nChild process \n" ); 
 	}
 	else {		/*Parent process */ 
 		/*Parent will wait for the child */

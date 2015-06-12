@@ -5,7 +5,7 @@
 */
 #include <stdio.h>
 #include <pthread.h>
-#define NUMTHREADS 1000
+#define NUMTHREADS 200
 #define false 0
 #define true 1
 
@@ -39,11 +39,13 @@ int main(void) {
 void* counting(void * unused) {
 	int i=0;
 	
-	acquire();
+	acquire(); 
 	
-	for(i=0; i<1000; i++)
- 		counter++;
-	
+	for(i=0; i<1000; i++){
+				
+		counter++;
+		
+	}
 	release();
 	
 	return NULL;

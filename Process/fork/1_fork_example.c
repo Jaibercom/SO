@@ -15,13 +15,14 @@ int main(){
 	pid_t pid;
 	pid  =  fork();
 
-	if( pid == 0 ){
+	if( !pid  ){
 		value += 15;
+		printf("\nChild: value = %d pid =%d\n", value, getpid() ); //LINE B
 		return 0;
 	}
 	else if( pid > 0 ){
 		wait(NULL);
-		printf("\nPARENT: value = %d\n", value ); //LINE A
+		printf("\nPARENT: value = %d, child pid =%d \n", value, pid ); //LINE A
 		return 0;
 
 	}

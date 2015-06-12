@@ -1,6 +1,6 @@
 /*
 	Example3:	Use system calls getpid() and getppid()
-					Verified how child to return his finish status		
+				Verified how child to return his finish status		
 									
 	compile: gcc -o fork 3_fork_getpid.c
 */
@@ -25,7 +25,7 @@ int main(){
 		printf("\nCHILD -> pid %d!\n", getpid());
 		printf("My parent pid %d!\n", getppid());
 		
-		exit(35);
+		exit(257);
 	}
 	else {		/*Parent process */ 
 		/*Parent will wait for the child */
