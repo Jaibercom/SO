@@ -80,7 +80,14 @@ int main(int argc, char *argv[])
     // Cuando todos los clientes se atiendan matar al hilo barbero
     allDone = 1;
     sem_post(&barberPillow);  //Despierta al barbero para salir
-    pthread_join(btid,NULL);    
+    pthread_join(btid,NULL); 
+    
+	sem_destroy(&waitingRoom);
+	sem_destroy(&barberChair);
+	sem_destroy(&barberPillow);
+	sem_destroy(&seatBelt);
+    
+    return 0;   
 }
 
 void *customer(void *number) {
