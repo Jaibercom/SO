@@ -25,7 +25,7 @@ int main(){
 		printf("\nCHILD -> pid %d!\n", getpid());
 		printf("My parent pid %d!\n", getppid());
 		
-		exit(257);
+		exit(25);
 	}
 	else {		/*Parent process */ 
 		/*Parent will wait for the child */
