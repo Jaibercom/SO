@@ -4,6 +4,7 @@
 #include<semaphore.h>
 
 sem_t synch;
+sem_t synch1;
 
 void *s1(void *arg);
 void *s2(void *arg);
@@ -14,6 +15,7 @@ int main(){
 	pthread_t h1_id,h2_id,h3_id;
 	
 	sem_init(&synch,0,0);
+	sem_init(&synch1,0,0);
 
 	pthread_create(&h1_id,NULL,&s1,NULL);
 	pthread_create(&h2_id,NULL,&s2,NULL);
@@ -24,6 +26,7 @@ int main(){
 	pthread_join(h3_id,NULL);
 	
 	sem_destroy(&synch);
+	sem_destroy(&synch1);
 
 	printf("\nDone !!\n");
 	return 0;
@@ -40,12 +43,13 @@ void *s2(void *arg){
 	
 	sem_wait(&synch);
 	printf("\nExecuting S2..\n");
+	sem_post(&synch1);
 	return 0;
 }
 
 void *s3(void *arg){
 	
-	//sem_wait(&synch);
+	sem_wait(&synch1);
 	printf("\nExecuting S3..\n");
 	return 0;
 }

@@ -51,15 +51,12 @@ int numberSubjets();
 void getData(uint *pNumSubjets, strSubjet *pSubjets, FILE *file);
 void printData(uint *pNumSubjets, strSubjet *pSubjets);
 float calculateAverage(uint *pNumSubjets, strSubjet *pSubjets);
-void printResult(uint _numSubjets, char _name[][NUMCHARNAME], float *pGrade, float _average);
+void printResult(/* implementar*/);
 
 int main(int argc, char *argv[]){
 	
+	uint value;	
 	uint numSubjets = 0;
-	//char name [MAXSUBJ][NUMCHARNAME];
-	//float grade[MAXSUBJ];	
-	//float *pGrades;
-	//float average;
 	strSubjet *pSubjets;
 	FILE *inFile;
 	
@@ -84,6 +81,9 @@ int main(int argc, char *argv[]){
 	printResult(numSubjets, name, pGrades, average);
 	*/
 	free(pSubjets);
+	value =	fclose(inFile);
+	if (value == 0)
+		printf("Se cerro el fichero\n");
 	
 	return 0;
 }
@@ -141,13 +141,15 @@ float calculateAverage(uint *pNumSubjets, strSubjet *pSubjets){
 	return avg;
 }
 
-void printResult(uint _numSubjets, char _name[][NUMCHARNAME], float *_pGrade, float _average){
-	
+void printResult(){
+	//Implementar, escribir en fichero de salida 
+	/*
 	int i = 0;
 	printf("\n%-10s %-5s %-8s\n", "Nombre", "Nota", "Creditos" );
+
 	for(i=0; i<_numSubjets; i++){		
 		//printf("%-10.10s %-5.1f\n", _name[i], *(_pGrade+i) );
 	}
-	printf("El promedio ponderado es: %.1f \n", _average);
-	
+	//printf("El promedio ponderado es: %.1f \n", _average);
+	*/
 }
