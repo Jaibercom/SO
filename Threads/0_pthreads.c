@@ -1,7 +1,7 @@
 /*
 	Example: Creating threads
-	compile: gcc -o threads 1_threads.c -lpthread
-	To execute: .
+	compile: gcc -o threads 0_threads.c -lpthread
+	To execute: ./threads
 */
 
 #include <pthread.h>
