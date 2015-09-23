@@ -4,6 +4,10 @@
 	Some utils functions:
 	void pthread_exit(void *retval);
 	int pthread_join(pthread_t thread, void **retval);
+	
+	compile: gcc -Wall -o threads 3_pthreads.c -lpthread
+	To execute: ./threads 5 
+	
 */
 
 #include <pthread.h>
@@ -16,7 +20,6 @@ void *runner(void *param); 	/* threads call this function */
 int main(int argc, char *argv[])
 {
 	pthread_t tid; /* the thread identifier */
-	//int *response[1];
 	int val = 0;
 	int answer=0;
 	
@@ -35,10 +38,8 @@ int main(int argc, char *argv[])
 	/* create the thread */
 	pthread_create(&tid, NULL, runner, (void*)&val);
 	/* wait for the thread to exit */
-	//pthread_join(tid, (void**)&response[0]);
 	pthread_join(tid, (void**)&answer);
 
-	//printf("result = %d\n", *response[0]);	
 	printf("result = %d\n", answer);
 	printf("sum = %d\n", sum);
 
@@ -51,14 +52,10 @@ void *runner(void *param)
 	int i;
 	int upper = *((int *)param);
 	int sum = 0;
-	//int *ptr = (void *) malloc(sizeof(int));
 	
 	for (i = 1; i <= upper; i++)
 		sum += i;
 		
-	//*ptr = sum;	
-		
-	//pthread_exit(ptr);
 	//pthread_exit((void*)sum);
-	return (void*)sum;
+	return (void *)sum;
 }

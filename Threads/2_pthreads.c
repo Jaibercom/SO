@@ -1,6 +1,7 @@
 /*
 	Example: Threads, passing arguments to a thread
-	compile: gcc -Wall -o threads 1_threads.c -lpthread
+	compile: gcc -Wall -o threads 2_pthreads.c -lpthread
+	To execute: ./threads 5 
 */
 
 #include <pthread.h>
@@ -13,6 +14,7 @@ void *runner(void *param); /* threads call this function */
 int main(int argc, char *argv[])
 {
 	pthread_t tid; /* the thread identifier */
+	int value = 0;
 	
 	if (argc != 2){
 		fprintf(stderr,"usage: a.out <integer value>\n");
@@ -24,8 +26,10 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	
+	value = atoi(argv[1]);
+	
 	/* create the thread */
-	pthread_create(&tid, NULL, runner, argv[1]);
+	pthread_create(&tid, NULL, runner, (void *)&value);
 	/* wait for the thread to exit */
 	pthread_join(tid, NULL);
 	
@@ -38,7 +42,7 @@ int main(int argc, char *argv[])
 /* The thread will begin control in this function */
 void *runner(void *param)
 {
-	int i, upper = atoi(param);
+	int i, upper = *((int *)param);
 	sum = 0;
 	for (i = 1; i <= upper; i++)
 		sum += i;

@@ -1,3 +1,12 @@
+/*
+	Example: data spliting using Threads
+	
+	compile: gcc -Wall -o threads 4_pthreads.c -lpthread
+	To execute: ./threads 5 
+	
+*/
+
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +30,7 @@ int main(int argc, char *argv[])
 	int *response[NUMTHREADS];
 	int value = atoi(argv[1]);
 	
-	struct parameters params[2];
+	struct parameters params[NUMTHREADS];
 	
 	if (argc != 2){
 		fprintf(stderr,"usage: a.out <integer value>\n");
@@ -72,8 +81,6 @@ void *runner(void *param)
 		sum += i;
 	
 	*ptr = sum;	
-	
-	//return (void*) sum;	
+		
 	pthread_exit(ptr);
-	//pthread_exit(NULL);
 }

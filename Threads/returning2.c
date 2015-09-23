@@ -12,7 +12,7 @@ void* doSomeThing(void *arg)
     unsigned long i = 0;
     pthread_t id = pthread_self();
 
-    for(i=0; i<(0xFFFFFFFF);i++);
+    for(i=0; i<(0xFFFFFFF);i++);
 
     if(pthread_equal(id,tid[0]))
     {
