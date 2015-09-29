@@ -1,0 +1,9 @@
+SistemasOperativos
+3.0
+4
+Laboratorio
+4.5
+1
+CompuMovil
+3.5
+3
