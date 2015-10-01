@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #define NUMTHREADS 200
+#define MAXCNT 1000
 
 /* Global variables - shared between threads */
 double counter = 0;
@@ -32,9 +33,10 @@ int main(void) {
 	for( i=0; i< NUMTHREADS; i++){
 		pthread_join(tid[i], NULL);
 	}
-	/* mutex init*/
+	/* mutex destroy*/
 	pthread_mutex_destroy(&lock);
 	
+	printf("\nCounter must be in: %d\n", MAXCNT*NUMTHREADS);
 	printf("\nCounter value is: %.0f\n\n", counter);
 	return 0;
 }
@@ -45,7 +47,7 @@ void* counting(void * unused) {
 	
 	pthread_mutex_lock(&lock);
 	
-	for(i=0; i<1000; i++)
+	for(i=0; i<MAXCNT; i++)
  		counter++;
 	
 	pthread_mutex_unlock(&lock);

@@ -1,5 +1,5 @@
 /*
-	Example: implementing mutex locks with pthread functions
+	Example: implementing mutex locks with semaphore pthread functions 
 	compile: gcc 4_semaphore.c -o semaphore -lpthread
 	To execute: ./semaphore
 */
@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 #define NUMTHREADS 200
+#define MAXCNT 1000
 
 /* Global variables - shared between threads */
 double counter = 0;
@@ -31,6 +32,7 @@ int main(void) {
 	}
 	/* Semaphore destroy*/
 	sem_destroy(&sem);
+	printf("\nCounter must be in: %d\n", MAXCNT*NUMTHREADS);
 	printf("\nCounter value is: %.0f\n\n", counter);
 
 	return 0;
@@ -42,7 +44,7 @@ void* counting(void * unused) {
 	
 	sem_wait(&sem);
 	
-	for(i=0; i<1000; i++)
+	for(i=0; i<MAXCNT; i++)
  		counter++;
 	
 	sem_post(&sem);

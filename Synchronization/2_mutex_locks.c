@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #define NUMTHREADS 200
+#define MAXCNT 1000
 #define false 0
 #define true 1
 
@@ -30,6 +31,7 @@ int main(void) {
 		pthread_join(tid[i], NULL);
 	}
 	
+	printf("\nCounter must be in: %d\n", MAXCNT*NUMTHREADS);
 	printf("\nCounter value is: %.0f\n\n", counter);
 
 	return 0;
@@ -41,10 +43,9 @@ void* counting(void * unused) {
 	
 	acquire(); 
 	
-	for(i=0; i<1000; i++){
-				
-		counter++;
+	for(i=0; i<MAXCNT; i++){
 		
+		counter++;	
 	}
 	release();
 	
