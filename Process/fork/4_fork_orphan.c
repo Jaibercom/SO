@@ -17,9 +17,9 @@ int main() {
          /* this is a child: dies immediately and becomes zombie */
         printf("\nChild pid: %d!\n", getpid());
         printf("Please, press enter after looking at the orphan process...\n");
-        getchar();
-		//sleep(20);
-		printf("\n PID new parent: %d!\n", getppid());
+		//(void)getchar();
+		sleep(20);
+		printf("\nPID new parent: %d!\n", getppid());
         printf("Child finish\n");
         exit(0);
     }

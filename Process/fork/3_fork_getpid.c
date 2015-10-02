@@ -14,25 +14,28 @@
 int main(){
 
 	pid_t pid;
+	pid_t pidw;
 	int status;
+	int value;
 	pid  =  fork();
 
-	if(pid < 0 ){		/*Error */ 
+	if( pid < 0 ){		/*Error */ 
 		fprintf(stderr, "Fork failed ");
+		exit(1);
 	}
 	else if( pid == 0 ){	/*Child process */ 
 		
-		printf("\nCHILD -> pid %d!\n", getpid());
-		printf("My parent pid %d!\n", getppid());
+		printf("\nCHILD     -> pid %d!\n", getpid());
+		printf("My parent -> pid %d!\n", getppid());
 		
 		exit(25);
 	}
 	else {		/*Parent process */ 
 		/*Parent will wait for the child */
 		
-		pid = wait(&status);
+		pidw = wait(&status);
 		printf("\nPARENT -> pid %d!\n", getpid());
-		printf("Child complete %d\n", pid); 
+		printf("CHILD complete %d\n", pidw); 
 		printf("Status %d\n", WEXITSTATUS(status)); 		
 		return 0;
 

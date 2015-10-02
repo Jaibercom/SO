@@ -5,9 +5,10 @@
 	How can I execute ls command with options, for example ls -la 
 */
 
-#include <sys/types.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 int main(){
 
@@ -18,7 +19,11 @@ int main(){
 		fprintf(stderr, "Fork failed ");
 	}
 	else if( pid == 0 ){	/*Child process */ 
-		execl("/bin/ls", "ls",NULL);
+		
+		//execl("/bin/ls", "ls", NULL);		
+		execl("/bin/ls", "ls", "-l", "-a", NULL);
+		//execv  ??
+		//execvp   ??
 		printf("\nChild process \n" ); 
 	}
 	else {		/*Parent process */ 
@@ -27,4 +32,5 @@ int main(){
 		printf("\nChild complete \n" ); //LINE A
 		return 0;
 	}
+	return 0;
 }
