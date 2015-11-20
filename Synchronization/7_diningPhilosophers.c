@@ -1,3 +1,9 @@
+/*
+	Example: Dinning philosophers problem
+	compile: gcc 7_dinnigPhilosophers.c -o dinnig -lpthread
+	To execute: ./dinnig
+*/
+
 #include<stdio.h>
 #include<semaphore.h>
 #include<pthread.h>
