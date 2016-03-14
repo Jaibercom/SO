@@ -1,0 +1,9 @@
+SistOperativos
+3.0
+5
+LabSO
+4.5
+1
+Otra
+5.0
+4
