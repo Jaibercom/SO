@@ -1,6 +1,27 @@
 /*
 	Programa que calcula la distancia entre dos puntos
 
+
+	Modificar:
+	los puntos estan en un fichero asi:
+	x1
+	y1
+	x2
+	y2
+	ejemplo:
+	1
+	1
+	2
+	2
+	
+	O pueden estar en un fichero separado por comas CSV asi; 
+	x;y
+	1;1
+	2;2
+
+	En este caso les sera util usar la funcion strtok
+	
+
 */
 #include <stdio.h>
 #include <math.h>
