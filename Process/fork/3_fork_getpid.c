@@ -26,15 +26,20 @@ int main(){
 	else if( pid == 0 ){	/*Child process */ 
 		
 		printf("\nCHILD     -> pid %d!\n", getpid());
-		printf("My parent -> pid %d!\n", getppid());
-		
+		//printf("My parent -> pid %d!\n", getppid());
+		printf("\nCHILD     -> value pid %d!\n", pid);		
+
 		exit(25);
 	}
+									//void exit(int status);
+									//pid_t wait(int *status);
+
 	else {		/*Parent process */ 
 		/*Parent will wait for the child */
 		
-		pidw = wait(&status);
+		pidw = wait(&status);				//status = 25 & 0377
 		printf("\nPARENT -> pid %d!\n", getpid());
+		printf("\nPARENT     -> value pid %d!\n", pid);	
 		printf("CHILD complete %d\n", pidw); 
 		printf("Status %d\n", WEXITSTATUS(status)); 		
 		return 0;

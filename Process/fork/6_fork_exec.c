@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -17,11 +18,12 @@ int main(){
 
 	if(pid < 0 ){		/*Error */ 
 		fprintf(stderr, "Fork failed ");
+		exit(1);
 	}
 	else if( pid == 0 ){	/*Child process */ 
 		
-		//execl("/bin/ls", "ls", NULL);		
-		execl("/bin/ls", "ls", "-l", "-a", NULL);
+		execl("./fork", "fork", NULL);		
+		//execlp("ls", "ls", "-al", NULL);
 		//execv  ??
 		//execvp   ??
 		printf("\nChild process \n" ); 
@@ -29,8 +31,7 @@ int main(){
 	else {		/*Parent process */ 
 		/*Parent will wait for the child */
 		wait(NULL);
-		printf("\nChild complete \n" ); //LINE A
-		return 0;
+		printf("\nChild complete \n" ); 
 	}
 	return 0;
 }

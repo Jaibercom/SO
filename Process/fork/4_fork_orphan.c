@@ -18,7 +18,7 @@ int main() {
         printf("\nChild pid: %d!\n", getpid());
         printf("Please, press enter after looking at the orphan process...\n");
 		//(void)getchar();
-		sleep(20);
+		sleep(50);
 		printf("\nPID new parent: %d!\n", getppid());
         printf("Child finish\n");
         exit(0);

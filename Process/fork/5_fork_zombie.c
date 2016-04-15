@@ -19,7 +19,7 @@ int main() {
         printf("\nChild process finished-> pid: %d!\n", getpid());
         exit(0);
     }
-	sleep(1);
+	sleep(2);
 	/* parent process: just asks for the user input */
 	printf("\nParent pid: %d!\n", getpid());
 	printf("Please, press enter after looking at the zombie process...");
