@@ -1,0 +1,5 @@
+Mateo;23;1.45
+Daniel;24;1.70
+Johanny;25;1.98
+Tatiana;29;1.32
+Amparo;22;1.99
