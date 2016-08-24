@@ -10,14 +10,18 @@ Determine el numero de procesos en ejecución y porqué?
 Verifique las llamadas al sistema getpid y getppid para obtener los identificadores del proceso.
 Ademas verifique como se puede devolver el estado al terminar el proceso hijo al padre
 
-4.Ejecute fork_orphan.c
+4.Ejecute fork_return_status.c
 	En otra consola digite: ps -la y verifique el estado 
 	Verifique ahora cual es el proceso padre usando "ps -aux"
 
-5.Ejecute fork_zombie.c
+5.Ejecute fork_orphan.c
+	En otra consola digite: ps -la y verifique el estado 
+	Verifique ahora cual es el proceso padre usando "ps -aux"
+
+6.Ejecute fork_zombie.c
 	En otra consola digite: ps -aux | grep Z   	ó:	ps -la	 y verifique el estado 
 
-6.ejecute fork_exec.c
+7.ejecute fork_exec.c
 Explique el funcionamiento del programa y del llamado "exec" y sus variantes.
 
 
