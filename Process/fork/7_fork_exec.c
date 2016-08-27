@@ -1,6 +1,6 @@
 /*
 	Example: How to use system call exec
-	compile: gcc -o fork 6_fork_exec.c
+	compile: gcc -o exec 7_fork_exec.c
 	What is the difference between execl and execlp?
 	How can I execute ls command with options, for example ls -la 
 */
@@ -22,7 +22,7 @@ int main(){
 	}
 	else if( pid == 0 ){	/*Child process */ 
 		
-		execl("./fork", "fork", NULL);		
+		execl("./example", "example", NULL);		
 		//execlp("ls", "ls", "-al", NULL);
 		//execv  ??
 		//execvp   ??
