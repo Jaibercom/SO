@@ -1,60 +1,68 @@
 /*
-	Example: Creating several threads
-	compile: gcc -o threads 5_threads.c -lpthread
+	Example: Creating several threads, each thread is able to sum a independient value
+	compile: gcc -o threads 5_pthreads.c -lpthread
 	To execute: ./threads
 */
 
 #include <pthread.h>
 #include <stdio.h>
+#include <stdlib.h> 
+
+#define MAX 100
 
 int sum; /* this data is shared by the thread(s) */
 void *runner(void *param); /* threads call this function */
 
 int main(int argc, char *argv[])
 {
-	pthread_t tid[10]; /* the thread identifier */
-	int value[10];
-	int numThreads;
 	int i;
-	int answer;
+	int numThreads;
+	int value[MAX];
+	pthread_t tid[MAX]; /* the thread identifier */
+	int *answer[MAX];
 
-	printf("Cuantos hilos desea crear:  (Max 10)");
+	printf("Cuantos hilos desea crear:  (Max %d) ", MAX);
 	scanf("%d", &numThreads);
+
+	if (numThreads > MAX ) {
+		fprintf(stderr,"Numero de hilos debe ser <= %d\n", MAX);
+		return -1;
+	}
 	
 	for(i=0; i<numThreads; i++){
-		printf("Ingrese el valor upper del hilo %d: ", i+1);
+		printf("Ingrese el valor para el hilo %d: ", i+1);
 		scanf("%d", &value[i]);
 	}
 
-	for(i=0; i<numThreads; i++){
-		/* create the thread */
+	//Creating threads
+	for(i=0; i<numThreads; i++)
+	{
 		pthread_create(&tid[i], NULL, runner, (void *)&value[i]);
-
-	}	
-
-	for(i=0; i<numThreads; i++){
-		/* wait for the thread to exit */
-		pthread_join(tid[i], (void **)&answer);
-		printf("sum = %d\n",answer);
-	}	
+	}
 	
-	//printf("sum = %d\n",sum);
+	//Waiting for the threads
+	for(i=0; i<numThreads; i++)
+	{
+		pthread_join(tid[i], (void **)&answer[i]);
+		printf("sum[%d] = %d\n", i+1, *answer[i]);
+	
+		//Memory free 
+		free(answer[i]);
+	}	
+
 	return 0;
-	
 }
 
 /* The thread will begin control in this function */
 void *runner(void *param)
 {
 	int i;
-	//int *upper = (int *)param;
 	int up = *((int *)param);
-	int sum = 0;
+
+	int *ptr_sum = (void *) malloc(sizeof(int));	
 
 	for (i = 1; i <= up; i++)
-		sum += i;
+		*ptr_sum += i;
 		
-	//printf("sum = %d\n",sum);
-
-	pthread_exit((void *)sum);
+	pthread_exit(ptr_sum);
 }
