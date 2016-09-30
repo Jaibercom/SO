@@ -2,7 +2,7 @@
 
 ## Enunciado
 
-Se desea generar 10 números aleatorios entre 0 y 999 de forma paralela, luego en el proceso padre tomar estos números, ordenarlos de acuerdo al proceso y listar el número generado.
+Se desea generar 10 números aleatorios entre 0 y 254 de forma paralela, luego en el proceso padre tomar estos números, ordenarlos de acuerdo al proceso y listar el número generado.
 
 ## Compilación
 
