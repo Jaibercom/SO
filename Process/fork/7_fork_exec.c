@@ -21,9 +21,9 @@ int main(){
 		exit(1);
 	}
 	else if( pid == 0 ){	/*Child process */ 
-		
-		execl("./example", "example", NULL);		
-		//execlp("ls", "ls", "-al", NULL);
+		printf("\n\nExec example.....  \n");
+		//execl("example", "example", NULL);		
+		execlp("ls", "ls", "-al", NULL);
 		//execv  ??
 		//execvp   ??
 		printf("\nChild process \n" ); 
