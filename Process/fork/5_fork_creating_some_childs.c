@@ -1,3 +1,9 @@
+/*
+	Example5:	Creating some childs, all of them are running concurrently		
+									
+	compile: 	gcc -o return_status 5_fork_creating_some_childs.c
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

@@ -14,14 +14,18 @@ Ademas verifique como se puede devolver el estado al terminar el proceso hijo al
 	En otra consola digite: ps -la y verifique el estado 
 	Verifique ahora cual es el proceso padre usando "ps -aux"
 
-5.Ejecute fork_orphan.c
+5.Ejecute fork_creating_some_childs.c
+	Verifique que se crean n procesos hijos que se 
+	ejecutan concurrentemennte 
+
+6.Ejecute fork_orphan.c
 	En otra consola digite: ps -la y verifique el estado 
 	Verifique ahora cual es el proceso padre usando "ps -aux"
 
-6.Ejecute fork_zombie.c
+7.Ejecute fork_zombie.c
 	En otra consola digite: ps -aux | grep Z   	ó:	ps -la	 y verifique el estado 
 
-7.ejecute fork_exec.c
+8.ejecute fork_exec.c
 Explique el funcionamiento del programa y del llamado "exec" y sus variantes.
 
 
