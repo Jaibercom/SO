@@ -14,7 +14,6 @@
 int main(){
 
 	pid_t pid;
-	pid_t pidw;
 	int status;
 	int value;
 	pid  =  fork();
@@ -25,18 +24,20 @@ int main(){
 	}
 	else if( pid == 0 ){	/*Child process */ 
 		
-		printf("\nCHILD  -> MY pid %d!\n", getpid());
-		printf("\nCHILD  -> My parent pid %d!\n", getppid());
-		printf("\nCHILD   > variable pid %d!\n", pid);		
+		printf("\nCHILD  -> MY pid %d!", getpid());
+		printf("\nCHILD  -> My parent pid %d!", getppid());
+		printf("\nCHILD   > variable pid %d!\n", pid);
+		exit(0);		
 
 	}
 	else {		/*Parent process */ 
 		/*Parent will wait for the child */	
 		wait(NULL);			
-		printf("\nPARENT -> My pid %d!\n", getpid());
-		printf("\nPARENT -> value pid %d!\n", pid);	
-		printf("\nPARENT -> variable %d\n", pid); 	
+		printf("\nPARENT -> My pid %d!", getpid());
+		printf("\nPARENT -> variable pid %d\n", pid); 	
 
 	}
+
+	printf("\nMessage\n\n"); 
 	return 0;
 }
