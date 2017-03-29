@@ -5,12 +5,13 @@
  *							obtenido por un estudiante en el semestre
  * Importance   : Poner en practica los temas vistos: Funciones, punteros, memoria dinamica, estructuras y ficheros
  * Compilation  : gcc -Wall mares.c -o mares
- * Execution    : ./mares
+ * Execution    : ./mares materias.csv
 */
-
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 //Macros
 #define NUMCHARNAME 20
@@ -18,42 +19,54 @@
 typedef struct {
 	char name[NUMCHARNAME];
 	float grade;
-	uint credits; 
+	int credits; 
 }strSubjet;
 
 //Functions Declaration
-int getNumberSubjets();
-void readData(/* implementar*/);
+int getNumberSubjets(FILE *file);
+void readData(FILE *file, int numSubjets, strSubjet *prtStrSubjet);
 void printData(/* implementar*/);
 float calculateAverage(/* implementar*/);
 void printResult(/* implementar*/);
+
+void lineProcess(char *line, strSubjet *my_structure);
 
 int main(int argc, char *argv[]){
 	
 	int value;	
 	int numSubjets = 0;
 	FILE *inFile;
+	char *fileName = NULL;
+
+	strSubjet subjets[100];
+
+	//char name[20];
+	//float grade;	
 	
-	char *fileName = argv[1];
+	//Validar Argumentos
+	if(argc != 2 ){
+		printf("Se debe ejecutar asi: %s materias.csv\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+	fileName = argv[1];
 	
+	//Abrir fichero
 	inFile = fopen(fileName, "r");
 	if(inFile == NULL){
 		printf("No se puede abrir el fichero: %s\n", fileName);
 		exit(EXIT_FAILURE);
 	}
 	
+	//Obtener el numero de materias 
 	numSubjets = getNumberSubjets(inFile);
 	printf("El numero de materias es:  %d \n", numSubjets);
 	
 	//reservar memoria 
 
-
-	
 	//Leer información del fichero
-	//readData( .... ); 
-	//printData( .... ); 
+	readData(inFile, numSubjets, subjets); 
+	printData(inFile, numSubjets, &subjets[0]); 
 	
-
 
 	//Realizar calculos
 	/*
@@ -68,30 +81,81 @@ int main(int argc, char *argv[]){
 }
 
 //Functions implementation
-int numberSubjets(FILE *file){
+int getNumberSubjets(FILE *file){
 	int num = -2;
-	char buffer[NUMCHARNAME];
-	while(!feof(file)){
-		fgets(buffer, NUMCHARNAME, file);
+	char buffer[100];
+
+	while( !feof(file) ){		//es lo mismo que:   feof(file) == 0
+		fgets(buffer, 100, file);
 		//puts(buffer);
 		num++;
 	}	
+	
 	rewind(file);
-	return num;
+	return num-1;
 }
 
-void getData(int pNumSubjets, strSubjet *pSubjets, FILE *file){
+void readData(FILE *file, int numSubjets, strSubjet *prtStrSubjet){
 
 	int i = 0;
-	for(i=0; i<pNumSubjets; i++){
-			
+	char *pch;
+	char buffer[100];
+
+	float var;
+	int varInt;
+
+	rewind(file);
+	fgets(buffer, 100, file);	//Leo linea 1
+	fgets(buffer, 100, file);	//Leo linea 2
+
+	for(i=0; i<numSubjets; i++){
+
+		fgets(buffer, 100, file);
+		
+		//"Laboratorio;4.5;1"
+		pch = (char *)strtok(buffer, ";");
+		strcpy(prtStrSubjet->name, pch);
+		//printf("%s\n", prtStrSubjet->name);
+
+		pch = (char *)strtok(NULL, ";");
+		prtStrSubjet->grade = atof(pch);
+		//printf("float: %.1f\n", prtStrSubjet->grade);
+
+		pch = (char *)strtok(NULL, ";");
+		prtStrSubjet->credits = atoi(pch);
+		//printf("entero %d\n", prtStrSubjet->credits);
+		
 	}
 }
 
-void printData(){
+void printData(FILE *file, int numSubjets, strSubjet *prtStrSubjet){
 
+	int i = 0;
+	char *pch;
+	char buffer[100];
 
+	for(i=0; i<numSubjets; i++){
+
+		printf("%s\n", prtStrSubjet->name);
+		printf("float: %.1f\n", prtStrSubjet->grade);
+		printf("entero %d\n", prtStrSubjet->credits);
+		
+	}
 }
+
+/*
+void lineProcess(char *line, strSubjet *my_structure) {
+  char *pch;
+  char sep[] = ";";
+
+  pch = strtok(line, sep);
+  strcpy(my_structure->name, pch);
+
+  pch = strtok (NULL, sep);
+  my_structure->quantity = atoi(pch);
+}
+*/
+
 
 float calculateAverage(){
 	
