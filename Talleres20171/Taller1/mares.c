@@ -22,12 +22,6 @@ typedef struct {
 	int credits; 
 }strSubjet;
 
-struct strSubjet2{
-	char name[NUMCHARNAME];
-	float grade;
-	int credits; 
-};
-
 //Functions Declaration
 int getNumberSubjets(FILE *file);
 void readData(FILE *file, int numSubjets, strSubjet *prtStrSubjet);
