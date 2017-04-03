@@ -1,9 +1,10 @@
 /*
  * Name         : mares.c
  * Author       : Jaiber Yepes
- * Description  : Taller 1. Realice un programa que permita calcular el promedio ponderado 
+ * Description  : Taller 1. Programa que permita calcular el promedio ponderado 
  *							obtenido por un estudiante en el semestre
- * Importance   : Poner en practica los temas vistos: Funciones, punteros, memoria dinamica, estructuras y ficheros
+ * Importance   : Poner en practica los temas vistos: Funciones, punteros, memoria dinamica, 
+ *				  estructuras y ficheros
  * Compilation  : gcc -Wall mares.c -o mares
  * Execution    : ./mares materias.csv
 */
@@ -11,7 +12,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 //Macros
 #define NUMCHARNAME 20
@@ -22,11 +22,17 @@ typedef struct {
 	int credits; 
 }strSubjet;
 
+struct strSubjet2{
+	char name[NUMCHARNAME];
+	float grade;
+	int credits; 
+};
+
 //Functions Declaration
 int getNumberSubjets(FILE *file);
 void readData(FILE *file, int numSubjets, strSubjet *prtStrSubjet);
-void printData(/* implementar*/);
-float calculateAverage(/* implementar*/);
+void printData(FILE *file, int numSubjets, strSubjet *prtStrSubjet);
+float calculateAverage(int numSubjets, strSubjet *prtStrSubjet);
 void printResult(/* implementar*/);
 
 void lineProcess(char *line, strSubjet *my_structure);
@@ -37,11 +43,10 @@ int main(int argc, char *argv[]){
 	int numSubjets = 0;
 	FILE *inFile;
 	char *fileName = NULL;
+	float average;
 
-	strSubjet subjets[100];
-
-	//char name[20];
-	//float grade;	
+	//strSubjet subjets[4];
+	strSubjet *subjets;
 	
 	//Validar Argumentos
 	if(argc != 2 ){
@@ -51,7 +56,7 @@ int main(int argc, char *argv[]){
 	fileName = argv[1];
 	
 	//Abrir fichero
-	inFile = fopen(fileName, "r");
+	inFile = fopen(fileName, "a+");
 	if(inFile == NULL){
 		printf("No se puede abrir el fichero: %s\n", fileName);
 		exit(EXIT_FAILURE);
@@ -62,20 +67,23 @@ int main(int argc, char *argv[]){
 	printf("El numero de materias es:  %d \n", numSubjets);
 	
 	//reservar memoria 
-
+	subjets =  (strSubjet *) malloc(sizeof(strSubjet)*numSubjets);
+	
 	//Leer información del fichero
 	readData(inFile, numSubjets, subjets); 
-	printData(inFile, numSubjets, &subjets[0]); 
+	printData(inFile, numSubjets, subjets); 
 	
 
 	//Realizar calculos
-	/*
-	average = calculateAverage();
-	printResult();
+	average = calculateAverage(numSubjets, subjets);
+	printf("\nEl promedio ponderado es : %0.1f\n", average);
+	fprintf(inFile, "\nEl promedio ponderado es : %0.1f\n", average);
+	/*printResult();
 	*/
 
 	//Liberar memoria
 	fclose(inFile);
+	free(subjets);
 	
 	return 0;
 }
@@ -112,18 +120,20 @@ void readData(FILE *file, int numSubjets, strSubjet *prtStrSubjet){
 
 		fgets(buffer, 100, file);
 		
-		//"Laboratorio;4.5;1"
+		//"Laboratorio;4.5;1"     "4.5"
 		pch = (char *)strtok(buffer, ";");
 		strcpy(prtStrSubjet->name, pch);
-		//printf("%s\n", prtStrSubjet->name);
+		//printf("**%s\n", prtStrSubjet->name);
 
 		pch = (char *)strtok(NULL, ";");
 		prtStrSubjet->grade = atof(pch);
-		//printf("float: %.1f\n", prtStrSubjet->grade);
+		//printf("**float: %.1f\n", prtStrSubjet->grade);
 
 		pch = (char *)strtok(NULL, ";");
 		prtStrSubjet->credits = atoi(pch);
-		//printf("entero %d\n", prtStrSubjet->credits);
+		//printf("**entero %d\n", prtStrSubjet->credits);
+
+		prtStrSubjet++;
 		
 	}
 }
@@ -139,6 +149,8 @@ void printData(FILE *file, int numSubjets, strSubjet *prtStrSubjet){
 		printf("%s\n", prtStrSubjet->name);
 		printf("float: %.1f\n", prtStrSubjet->grade);
 		printf("entero %d\n", prtStrSubjet->credits);
+
+		prtStrSubjet++;
 		
 	}
 }
@@ -157,15 +169,23 @@ void lineProcess(char *line, strSubjet *my_structure) {
 */
 
 
-float calculateAverage(){
+float calculateAverage(int numSubjets, strSubjet *prtStrSubjet){
 	
 	int i = 0;
 	float avg = 0;
+	int numCred = 0;
+	float numGrades;
 
+	for(i=0; i<numSubjets; i++){
+		numCred += prtStrSubjet->credits;
+		numGrades += prtStrSubjet->grade * prtStrSubjet->credits;
 
+		prtStrSubjet++;
+	}
+	//printf("numCred: %d\n", numCred);
+	//printf("numGrades: %.1f\n", numGrades);
 
-
-
+	avg = numGrades/numCred;
 	return avg;
 }
 
