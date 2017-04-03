@@ -29,7 +29,6 @@ void printData(FILE *file, int numSubjets, strSubjet *prtStrSubjet);
 float calculateAverage(int numSubjets, strSubjet *prtStrSubjet);
 void printResult(/* implementar*/);
 
-void lineProcess(char *line, strSubjet *my_structure);
 
 int main(int argc, char *argv[]){
 	
@@ -148,20 +147,6 @@ void printData(FILE *file, int numSubjets, strSubjet *prtStrSubjet){
 		
 	}
 }
-
-/*
-void lineProcess(char *line, strSubjet *my_structure) {
-  char *pch;
-  char sep[] = ";";
-
-  pch = strtok(line, sep);
-  strcpy(my_structure->name, pch);
-
-  pch = strtok (NULL, sep);
-  my_structure->quantity = atoi(pch);
-}
-*/
-
 
 float calculateAverage(int numSubjets, strSubjet *prtStrSubjet){
 	
