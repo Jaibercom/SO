@@ -1,6 +1,6 @@
 /*
 	Example: How to use system call exec
-	compile: gcc -o exec 7_fork_exec.c
+	compile: gcc -o exec 8_fork_exec.c
 	What is the difference between execl and execlp?
 	How can I execute ls command with options, for example ls -la 
 */

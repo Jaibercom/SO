@@ -1,5 +1,5 @@
 /*
-	compile: gcc -o zombie 6_fork_zombie.c
+	compile: gcc -o zombie 7_fork_zombie.c
 	
 	In another console, use command "ps -al | grep Z" to check running process  
 		

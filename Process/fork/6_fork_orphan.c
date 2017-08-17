@@ -1,5 +1,5 @@
 /*
-	compile: gcc 5_fork_orphan.c -o orphan
+	compile: gcc 6_fork_orphan.c -o orphan
 	In another console, use command "ps -al" to check running process   
 	Check now which is the parent process using "ps -aux"
 */
