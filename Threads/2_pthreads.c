@@ -1,5 +1,5 @@
 /*
-	Example: Threads, passing arguments to a thread
+	Example: Threads, passing an argument to a thread
 	compile: gcc -Wall -o threads 2_pthreads.c -lpthread
 	To execute: ./threads 5 
 */
@@ -21,12 +21,12 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	
-	if (atoi(argv[1]) < 0) {
+	value = atoi(argv[1]);
+
+	if (value < 0) {
 		fprintf(stderr,"%d must be >= 0\n",atoi(argv[1]));
 		return -1;
 	}
-	
-	value = atoi(argv[1]);
 	
 	/* create the thread */
 	pthread_create(&tid, NULL, runner, (void *)&value);
@@ -42,9 +42,10 @@ int main(int argc, char *argv[])
 /* The thread will begin control in this function */
 void *runner(void *param)
 {
-	int i, upper = *((int *)param);
+	int i;
+	int	*upper = (int *)param;
 	sum = 0;
-	for (i = 1; i <= upper; i++)
+	for (i = 1; i <= *upper; i++)
 		sum += i;
 		
 	pthread_exit(0);

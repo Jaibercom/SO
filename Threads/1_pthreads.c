@@ -12,13 +12,23 @@ void *runner(void *param); /* threads call this function */
 
 int main(int argc, char *argv[])
 {
-	pthread_t tid; /* the thread identifier */
+	pthread_t tid[2]; /* the thread identifier */
 	
+/*
+int pthread_create(	pthread_t *thread, 
+					const pthread_attr_t *attr,
+                    void *(*start_routine) (void *), 
+					void *arg);
+
+int pthread_join(pthread_t thread, void **retval);
+
+*/
 	/* create the thread */
-	pthread_create(&tid, NULL, runner, NULL);
+	pthread_create(&tid[0], NULL, runner, NULL);
+
 	/* wait for the thread to exit */
-	pthread_join(tid, NULL);
-	
+	pthread_join(tid[0], NULL);
+
 	printf("sum = %d\n",sum);
 	return 0;
 	
@@ -27,7 +37,7 @@ int main(int argc, char *argv[])
 /* The thread will begin control in this function */
 void *runner(void *unused)
 {
-	int i, upper = 5;
+	int i, upper = 4;
 	sum = 0;
 	for (i = 1; i <= upper; i++)
 		sum += i;
