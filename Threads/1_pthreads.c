@@ -2,6 +2,14 @@
 	Example: Creating threads
 	compile: gcc -o threads 1_pthreads.c -lpthread
 	To execute: ./threads
+
+	int pthread_create(	pthread_t *thread, 
+					const pthread_attr_t *attr,
+                    void *(*start_routine) (void *), 
+					void *arg);
+
+	int pthread_join(pthread_t thread, void **retval);
+
 */
 
 #include <pthread.h>
@@ -14,15 +22,6 @@ int main(int argc, char *argv[])
 {
 	pthread_t tid[2]; /* the thread identifier */
 	
-/*
-int pthread_create(	pthread_t *thread, 
-					const pthread_attr_t *attr,
-                    void *(*start_routine) (void *), 
-					void *arg);
-
-int pthread_join(pthread_t thread, void **retval);
-
-*/
 	/* create the thread */
 	pthread_create(&tid[0], NULL, runner, NULL);
 
