@@ -5,11 +5,7 @@
 #include <stdlib.h>
 #include <signal.h>  
 
-//Funcion a ejecutar cuando despierte
-void function()
-{  
-     printf("Papa: Hijo ya terminó\n");  
-} 
+void function();
 
 int main(void) 
 { 
@@ -33,3 +29,8 @@ int main(void)
 	exit(0);  
 }
 
+//Funcion a ejecutar cuando despierte
+void function()
+{  
+     printf("Papa: Hijo ya terminó\n");  
+} 
