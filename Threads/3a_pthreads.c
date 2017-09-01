@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
 	val = atoi(argv[1]);	
 
-	if (val < 5 ) {
+	if (val < 0) {
 		fprintf(stderr,"%d must be >= 5\n",val);
 		return -1;
 	}
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	/* create the thread */
 	pthread_create(&tid, NULL, runner, (void*)&val);
 	/* wait for the thread to exit */
-	pthread_join(tid, (void**)response);
+	pthread_join(tid, (void**)&response[0]);
 	//pthread_join(tid, (void**)&answer);
 
 	printf("result = %d\n", *response[0]);	
@@ -63,6 +63,4 @@ void *runner(void *param)
 	*ptr = sum;	
 		
 	pthread_exit(ptr);
-	//pthread_exit((void*)sum);
-	//return (void*)sum;
 }

@@ -3,7 +3,7 @@
 	
 	Some utils functions:
 	void pthread_exit(void *retval);
-	int pthread_join(pthread_t thread, void **retval);
+	int pthread_join(pthread_t thread, void *retval[]);
 	
 	compile: gcc -Wall -o threads 3_pthreads.c -lpthread
 	To execute: ./threads 5 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
 	val = atoi(argv[1]);	
 
-	if (val < 5 ) {
+	if (val < 0 ) {
 		fprintf(stderr,"%d must be >= 5\n",val);
 		return -1;
 	}
@@ -56,6 +56,6 @@ void *runner(void *param)
 	for (i = 1; i <= upper; i++)
 		sum += i;
 		
-	//pthread_exit((void*)sum);
-	return (void *)sum;
+	pthread_exit((void*)sum);
+	//return (void *)sum;
 }
