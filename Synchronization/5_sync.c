@@ -1,9 +1,12 @@
 /*
-	Example: synchronizing exercise using semaphores.
-	s1 run before than s2.
-	Modify the program in order to S3 run after S2
+	Example: synchronizing THREADS exercise using semaphores.
+	
+	In this exercise the thread s1 run before than s2,
+	modify the program in order to S3 run after S2
+	
 	compile: gcc 5_sync.c -o sync -lpthread
 	To execute: ./sync
+
 */
 
 #include<stdio.h>

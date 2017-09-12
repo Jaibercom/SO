@@ -18,7 +18,7 @@ int main () {
 
     for (i = 0; i < numHijos; i++) {
         pid[i] = fork();
-        if (pid == -1) {
+        if (pid[i] == -1) {
             /* Error */
             printf("No fue posible crear un hijo\n");
             return -1;
