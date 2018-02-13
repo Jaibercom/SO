@@ -31,6 +31,8 @@ int main(){
 	avg = average(numbers, size);
 
 	printf("El promedio es: %.1f\n", avg );
+
+	free(numbers);
 	
 	return 0;
 }
