@@ -2,7 +2,7 @@
 	Example: data spliting using Threads
 	
 	compile: gcc -Wall -o threads 5_pthreads.c -lpthread
-	To execute: ./threads 5 
+	To execute: ./threads 1000 5
 	
 */
 
@@ -28,16 +28,18 @@ int main(int argc, char *argv[])
 	int sum=0; 	
 	
 	int *response[NUMTHREADS];
-	int value = atoi(argv[1]);
+	int value = 0;
 	
 	struct parameters params[NUMTHREADS];
 	
 	if (argc != 2){
-		fprintf(stderr,"usage: a.out <integer value>\n");
+		fprintf(stderr,"usage: %s <integer value>\n", argv[0]);
 		return -1;
 	}
 	
-	if (atoi(argv[1]) < NUMTHREADS ) {
+	value = atoi(argv[1]);
+
+	if ( value < NUMTHREADS ) {
 		fprintf(stderr,"%d must be >= 0\n",value);
 		return -1;
 	}
@@ -59,6 +61,9 @@ int main(int argc, char *argv[])
 	
 	for(cnt=0; cnt < NUMTHREADS; cnt++){
 		printf("Parcial result %d\n", *response[cnt]);
+			
+		//Memory free
+		free(response[cnt]);
 	}	
 	
 	printf("Total result = %d\n",sum);

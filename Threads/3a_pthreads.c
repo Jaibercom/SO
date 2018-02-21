@@ -56,6 +56,7 @@ void *runner(void *param)
 	int upper = *((int *)param);
 	int sum = 0;
 	int *ptr = malloc(sizeof(int));
+	*ptr_sum = 0;
 	
 	for (i = 1; i <= upper; i++)
 		sum += i;

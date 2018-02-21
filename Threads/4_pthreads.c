@@ -60,6 +60,7 @@ void *runner(void *param)
 	int up = *((int *)param);
 
 	int *ptr_sum = (void *) malloc(sizeof(int));	
+	*ptr_sum = 0;
 
 	for (i = 1; i <= up; i++)
 		*ptr_sum += i;
