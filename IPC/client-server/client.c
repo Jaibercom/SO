@@ -40,8 +40,10 @@ int main(int argc, char *argv[])
 	//envia y recibe mensajes
 	numbytes = recv( my_socket, buffer, SIZE-1, 0 );
 	buffer[numbytes] = '\0';
+	
+	printf("recibido: %s\n", buffer );	
 	printf("%d bytes recibidos\n", numbytes );
-	printf("recibido: %s\n", buffer );
+	
 	close( my_socket );
 	return 0;
 }
